@@ -18,7 +18,7 @@ class _homeState extends State<home> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> telas = [
+    List<Widget> telas = const [
       inicio(),
       em_alta(),
       inscricoes(),
@@ -38,26 +38,21 @@ class _homeState extends State<home> {
         ),
         actions: [
           IconButton(
-            onPressed: () {
-              print("Ação videocam");
-            },
+            onPressed: () {},
             icon: const Icon(Icons.videocam),
           ),
           IconButton(
-            onPressed: () {
-              print("Ação Search");
-            },
+            onPressed: () {},
             icon: const Icon(Icons.search),
           ),
           IconButton(
-            onPressed: () {
-              print("Ação Conta");
-            },
+            onPressed: () {},
             icon: const Icon(Icons.account_circle),
           ),
         ],
       ),
-      body: telas[_indiceAtual],
+      body: Container(
+          padding: const EdgeInsets.all(16), child: telas[_indiceAtual]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceAtual,
         onTap: (indice) {
