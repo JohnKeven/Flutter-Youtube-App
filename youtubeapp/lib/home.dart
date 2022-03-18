@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:youtubeapp/customSearchDelegate.dart';
 import 'package:youtubeapp/telas/biblioteca.dart';
 import 'package:youtubeapp/telas/em_alta.dart';
 import 'package:youtubeapp/telas/inicio.dart';
@@ -15,14 +16,15 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   int _indiceAtual = 0;
+  String _resultado = "";
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> telas = const [
-      inicio(),
-      em_alta(),
-      inscricoes(),
-      biblioteca(),
+    List<Widget> telas = [
+      inicio(_resultado),
+      const em_alta(),
+      const inscricoes(),
+      const biblioteca(),
     ];
     return Scaffold(
       appBar: AppBar(
@@ -42,8 +44,15 @@ class _homeState extends State<home> {
             icon: const Icon(Icons.videocam),
           ),
           IconButton(
-            onPressed: () {},
             icon: const Icon(Icons.search),
+            onPressed: () async {
+              String? res = await showSearch(
+                  context: context, delegate: customSearchDelegate());
+              setState(() {
+                _resultado = res!;
+              });
+              print("resultado: digitado " + res!);
+            },
           ),
           IconButton(
             onPressed: () {},

@@ -18,7 +18,7 @@ class Api {
             "&maxResults=20"
             "&order=date"
             "&key=$API_KEY"
-            "&channelId=$ID_CANAL"
+            //"&channelId=$ID_CANAL"
             "&q=$pesquisa"));
 
     if (response.statusCode == 200) {

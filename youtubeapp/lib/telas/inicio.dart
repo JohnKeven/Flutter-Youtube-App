@@ -4,22 +4,23 @@ import 'package:youtubeapp/API.dart';
 import 'package:youtubeapp/model/video.dart';
 
 class inicio extends StatefulWidget {
-  const inicio({Key? key}) : super(key: key);
+  String pesquisa;
+  inicio(this.pesquisa);
 
   @override
   State<inicio> createState() => _inicioState();
 }
 
 class _inicioState extends State<inicio> {
-  _listarVideos() {
+  _listarVideos(String pesquisa) {
     Api api = Api();
-    return api.pesquisar("");
+    return api.pesquisar(pesquisa);
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<video>>(
-        future: _listarVideos(),
+        future: _listarVideos(widget.pesquisa),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -46,6 +47,7 @@ class _inicioState extends State<inicio> {
                           ),
                         ),
                         ListTile(
+                          onTap: () {},
                           title: Text(vid.titulo ?? "Sem titulo"),
                           subtitle: Text(vid.canal ?? "Sem canal"),
                         )
